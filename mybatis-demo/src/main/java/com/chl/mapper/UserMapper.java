@@ -11,7 +11,24 @@ import java.util.List;
  */
 public interface UserMapper {
 
+
+	/**
+	 * 通过mybatis自动映射查询一对一关系
+	 * @param id
+	 * @return
+	 */
 	SysUser selectUserAndRoleById(Long id);
+
+	/**
+	 * 通过mybatis配置resultMap查询一对一关系
+	 * @param id
+	 * @return
+	 */
+	SysUser selectResultMapUserAndRoleById(Long id);
+
+	SysUser selectAssociationResultMapUserAndRoleById(Long id);
+
+	SysUser selectAssociationResultMapUserAndRoleById2(Long id);
 
 	SysUser selectById(Long id);
 

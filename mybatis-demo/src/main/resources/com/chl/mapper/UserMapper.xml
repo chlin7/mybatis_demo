@@ -13,6 +13,84 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="userMapAndRole" type="com.chl.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+
+        <!-- role 相关属性-->
+        <result property="sysRole.id" column="role_id"/>
+        <result property="sysRole.roleName" column="role_name" />
+        <result property="sysRole.enabled" column="enabled" />
+        <result property="sysRole.createBy" column="create_by" />
+        <result property="sysRole.createTime" column="role_create_time" jdbcType= "TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="userRoleMap" type="com.chl.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <association property="sysRole" columnPrefix="role_" resultMap="com.chl.mapper.RoleMapper.roleMap"/>
+    </resultMap>
+
+    <resultMap id="userAssociationMap" type="com.chl.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img" jdbcType="BLOB"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <association property="sysRole" columnPrefix="role_" javaType="com.chl.entity.SysRole">
+            <result property="id" column="id"/>
+            <result property="roleName" column="role_name" />
+            <result property="enabled" column="enabled" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" jdbcType= "TIMESTAMP"/>
+        </association>
+    </resultMap>
+
+    <select id="selectAssociationResultMapUserAndRoleById2" resultMap="userRoleMap">
+        select u.id,u.user_name,u.user_password,
+        u.user_email,u.user_info,u.head_img,u.create_time,
+        r.id  role_id,r.role_name role_role_name ,r.enabled role_enabled,
+        r.create_by role_create_by,r.create_time role_create_time
+        from sys_user u
+        inner join sys_user_role ur on u.id = ur.user_id
+        inner join sys_role r on ur.role_id = r.id
+        where u.id = #{id}
+    </select>
+
+    <select id="selectAssociationResultMapUserAndRoleById" resultMap="userAssociationMap">
+        select u.id,u.user_name,u.user_password,
+        u.user_email,u.user_info,u.head_img,u.create_time,
+        r.id  role_id,r.role_name role_role_name ,r.enabled role_enabled,
+        r.create_by role_create_by,r.create_time role_create_time
+        from sys_user u
+        inner join sys_user_role ur on u.id = ur.user_id
+        inner join sys_role r on ur.role_id = r.id
+        where u.id = #{id}
+    </select>
+
+    <select id="selectResultMapUserAndRoleById" resultMap="userMapAndRole">
+        select u.id,u.user_name,u.user_password,
+        u.user_email,u.user_info,u.head_img,u.create_time,
+        r.id  role_id,r.role_name role_name ,r.enabled enabled,
+        r.create_by create_by,r.create_time role_create_time
+        from sys_user u
+        inner join sys_user_role ur on u.id = ur.user_id
+        inner join sys_role r on ur.role_id = r.id
+        where u.id = #{id}
+    </select>
+
     <select id="selectUserAndRoleById" resultType="com.chl.entity.SysUser">
         select u.id,u.user_name userName,u.user_password userPassword,
         u.user_email userEmail,u.user_info userInfo,u.head_img headImg,u.create_time createTime,
