@@ -18,6 +18,21 @@ import java.util.List;
 public class UserMapperTest extends BaseMapperTest {
 
 	@Test
+	public void testSelectUserAndRoleById(){
+		SqlSession sqlSession = getSqlSession();
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+			SysUser result = userMapper.selectUserAndRoleById(1L);
+
+			Assert.assertNotNull(result);
+		} finally {
+			// 因此不手动执行 commit 也不会提交到数据库
+			sqlSession.close();
+		}
+	}
+
+	@Test
 	public void testSelectByIdList(){
 		SqlSession sqlSession = getSqlSession();
 		try {
