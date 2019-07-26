@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- properties标签：用于引入外部.properties配置文件
+            resource属性： 用于引入类路径下文件
+            url属性：  用于引入磁盘或者网络资源
+     -->
+    <properties resource="db.properties"></properties>
+
+    <!--
+    settings标签：是mybatis中非常重要的运行时环境配置,（全局性配置）
+        name属性：设置项
+        value：取值
+     -->
+    <settings>
+        <setting name="logImpl" value="LOG4J" />
+        <!-- 开启缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 使用懒加载 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 自动将数据中字段以驼峰命名法映射，
+            例如user_name映射为userName -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- typeAliases标签：类型别名，用于起别名
+        package标签：指定在哪个包下寻找bean
+        typeAlias标签：指定具体某个bean的别名别名
+     -->
+    <typeAliases>
+        <package name="com.chl.entity"/>
+        <!-- <typeAlias type="com.mybatis.entity.User" alias="user"/>  -->
+    </typeAliases>
+
+    <!--
+        environments标签：多个环境，在mybatis中可以配置多个环境，
+            通过default属性可以对多个环境快速切换
+    -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+
+        <!--<environment id="test">-->
+            <!--<transactionManager type="JDBC"></transactionManager>-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${jdbc.driver}" />-->
+                <!--<property name="url" value="${jdbc.url}" />-->
+                <!--<property name="username" value="${jdbc.username}" />-->
+                <!--<property name="password" value="${jdbc.password}" />-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    </environments>
+
+    <!-- mybatis支持多数据库厂商 -->
+    <!--<databaseIdProvider type="DB_VENDOR">-->
+        <!--&lt;!&ndash; 为不同的数据库厂商起别名 &ndash;&gt;-->
+        <!--<property name="MySQL" value="mysql"/>-->
+        <!--<property name="Oracle" value="oracle"/>-->
+        <!--<property name="SQL Server" value="sqlserver"/>-->
+    <!--</databaseIdProvider>-->
+
+    <!-- mappers标签：将sql映射注册到全局配置中 -->
+    <mappers>
+        <!-- mapper标签：
+        resource属性： 引用类路径下的sql映射文件
+        package属性：  特定包下，可以批量注册
+         -->
+        <mapper resource="mapper/CountryMapper.xml"/>
+        <!-- <package name="com.mybatis.entity"/> -->
+    </mappers>
+
+</configuration>
+
+
