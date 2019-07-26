@@ -30,6 +30,8 @@ public interface UserMapper {
 
 	SysUser selectAssociationResultMapUserAndRoleById2(Long id);
 
+	SysUser selectAssociationResultMapUserAndRoleById3(Long id);
+
 	SysUser selectById(Long id);
 
 	List<SysUser> selectAll();

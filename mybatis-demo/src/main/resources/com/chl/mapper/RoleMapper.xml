@@ -11,6 +11,10 @@
         <result property="createTime" column="create_time" jdbcType= "TIMESTAMP"/>
     </resultMap>
 
+    <select id="selectRoleById" resultMap="roleMap">
+      select * from sys_role where id = #{id}
+    </select >
+
     <select id="selectRolesByUserid" resultType="com.chl.entity.SysRole">
         select r.id ,r.role_name roleName,r.enabled,
         r.create_by createBy,r.create_time createTime

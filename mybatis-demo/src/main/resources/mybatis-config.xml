@@ -23,6 +23,11 @@
         <!-- 自动将数据中字段以驼峰命名法映射，
             例如user_name映射为userName -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 当该参数设置为 true 时，
+        对任意延迟属性的调用会使带有延迟加载属性的对象完整加载 ，
+        反之，每种属性都将按需加载。
+        默认为true-->
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <!-- typeAliases标签：类型别名，用于起别名

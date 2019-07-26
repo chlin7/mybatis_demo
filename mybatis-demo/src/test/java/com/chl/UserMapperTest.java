@@ -18,6 +18,24 @@ import java.util.List;
 public class UserMapperTest extends BaseMapperTest {
 
 	@Test
+	public void testSelectAssociationResultMapUserAndRoleById3(){
+		SqlSession sqlSession = getSqlSession();
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+			SysUser result = userMapper.selectAssociationResultMapUserAndRoleById3(1L);
+
+			System.out.println("======");
+
+//			System.out.println(result.getSysRole());
+//			Assert.assertNotNull(result);
+		} finally {
+			// 因此不手动执行 commit 也不会提交到数据库
+			sqlSession.close();
+		}
+	}
+
+	@Test
 	public void testSelectAssociationResultMapUserAndRoleById2(){
 		SqlSession sqlSession = getSqlSession();
 		try {
