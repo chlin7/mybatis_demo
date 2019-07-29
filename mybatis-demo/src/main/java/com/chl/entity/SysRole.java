@@ -1,6 +1,7 @@
 package com.chl.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ desc：角色表
@@ -14,6 +15,8 @@ public class SysRole {
 	private Integer enabled;
 	private Long createBy;
 	private Date createTime;
+
+	List<SysPrivilege> privilegeList;
 
 	public Long getId() {
 		return id;
@@ -53,5 +56,13 @@ public class SysRole {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public List<SysPrivilege> getPrivilegeList() {
+		return privilegeList;
+	}
+
+	public void setPrivilegeList(List<SysPrivilege> privilegeList) {
+		this.privilegeList = privilegeList;
 	}
 }

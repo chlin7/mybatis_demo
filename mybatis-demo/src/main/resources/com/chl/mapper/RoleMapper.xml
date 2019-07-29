@@ -11,6 +11,11 @@
         <result property="createTime" column="create_time" jdbcType= "TIMESTAMP"/>
     </resultMap>
 
+    <resultMap id="rolePrivilegeListMap" extends="roleMap" type="com.chl.entity.SysRole">
+        <collection property="privilegeList" columnPrefix="privilege_"
+                    resultMap="com.chl.mapper.PrivilegMapper.privilegeMap"/>
+    </resultMap>
+
     <select id="selectRoleById" resultMap="roleMap">
       select * from sys_role where id = #{id}
     </select >

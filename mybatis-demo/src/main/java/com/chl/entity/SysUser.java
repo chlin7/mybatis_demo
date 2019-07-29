@@ -1,6 +1,7 @@
 package com.chl.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ desc：
@@ -23,7 +24,7 @@ public class SysUser {
 
 	private Date createTime;
 
-	private SysRole sysRole;
+	private List<SysRole> roleList;
 
 	public Long getId() {
 		return id;
@@ -81,11 +82,11 @@ public class SysUser {
 		this.createTime = createTime;
 	}
 
-	public SysRole getSysRole() {
-		return sysRole;
+	public List<SysRole> getRoleList() {
+		return roleList;
 	}
 
-	public void setSysRole(SysRole sysRole) {
-		this.sysRole = sysRole;
+	public void setRoleList(List<SysRole> roleList) {
+		this.roleList = roleList;
 	}
 }
