@@ -1,5 +1,7 @@
 package com.chl;
 
+import com.chl.entity.SysPrivilege;
+import com.chl.entity.SysRole;
 import com.chl.entity.SysUser;
 import com.chl.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +19,24 @@ import java.util.List;
  */
 public class UserMapperTest extends BaseMapperTest {
 
+	@Test
+	public void testSelectAllUserAndRolesSelect(){
+		SqlSession sqlSession = getSqlSession();
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+			SysUser user = userMapper.selectAllUserAndRolesSelect(1L);
+
+			for(SysRole role: user.getRoleList()) {
+				System.out. println("角色名:"+ role.getRoleName());
+				for(SysPrivilege privilege : role . getPrivilegeList()) {
+					System.out.println("权限名" + privilege.getPrivilegeName () ) ;
+				}}
+		} finally {
+			// 因此不手动执行 commit 也不会提交到数据库
+			sqlSession.close();
+		}
+	}
 	@Test
 	public void testSelectAllUserAndPrivilegeRoles(){
 		SqlSession sqlSession = getSqlSession();

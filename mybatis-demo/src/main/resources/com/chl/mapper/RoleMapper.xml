@@ -15,6 +15,19 @@
         <collection property="privilegeList" columnPrefix="privilege_"
                     resultMap="com.chl.mapper.PrivilegMapper.privilegeMap"/>
     </resultMap>
+    
+    <resultMap id="rolePrivilegeListMapSelect" extends="roleMap" type="com.chl.entity.SysRole">
+        <collection property="privilegeList" fetchType="lazy" column="{roleId=id}"
+                    select="com.chl.mapper.PrivilegMapper.selectPrivilegeByRoleId"
+        />
+    </resultMap>
+    
+    <select id="selectRoleByUserId" resultMap="rolePrivilegeListMapSelect">
+        select r.id,r.role_name,r.enabled,r.create_by,r.create_time
+        from sys_role r
+        inner join sys_user_role ur on ur.role_id = r.id
+        where ur.user_id = #{userId}
+    </select>
 
     <select id="selectRoleById" resultMap="roleMap">
       select * from sys_role where id = #{id}

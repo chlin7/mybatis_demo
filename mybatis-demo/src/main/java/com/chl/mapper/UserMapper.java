@@ -40,6 +40,8 @@ public interface UserMapper {
 
 	List<SysUser> selectAllUserAndPrivilegeRoles(Long id);
 
+	SysUser selectAllUserAndRolesSelect(Long id);
+
 	/**
 	 * 用户存储
 	 */

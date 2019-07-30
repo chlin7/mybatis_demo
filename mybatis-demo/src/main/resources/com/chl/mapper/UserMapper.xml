@@ -64,12 +64,25 @@
     </resultMap>
     
     <resultMap id="userRoleMapSelect" extends="userMap" type="com.chl.entity.SysUser">
-        <!--<association property="sysRole" fetchType="lazy" column="{id=role_id}" select="com.chl.mapper.RoleMapper.selectRoleById"/>-->
+        <association property="sysRole" fetchType="lazy" column="{id=role_id}"
+                     select="com.chl.mapper.RoleMapper.selectRoleById"/>
     </resultMap>
     
     <resultMap id="userRolePrivilegeListMap" extends="userMap" type="com.chl.entity.SysUser">
-        <collection property="roleList" columnPrefix="role_" resultMap="com.chl.mapper.RoleMapper.rolePrivilegeListMap" />
+        <collection property="roleList" columnPrefix="role_"
+                    resultMap="com.chl.mapper.RoleMapper.rolePrivilegeListMap" />
     </resultMap>
+    
+    <resultMap id="userRoleListMapSelect" extends="userMap" type="com.chl.entity.SysUser">
+        <collection property="roleList" fetchType="lazy" column="{userId = id}"
+                    select="com.chl.mapper.RoleMapper.selectRoleByUserId"/>
+    </resultMap>
+    
+    <select id="selectAllUserAndRolesSelect" resultMap="userRoleListMapSelect">
+        select u.id,u.user_name,u.user_password,u.user_email,u.user_info,u.head_img,u.create_time
+        from sys_user u
+        where u.id = #{id}
+    </select>
 
     <select id="selectAllUserAndPrivilegeRoles" resultMap="userRolePrivilegeListMap">
         select u.id,u.user_name,u.user_password,
@@ -143,7 +156,8 @@
 
     <select id="selectUserAndRoleById" resultType="com.chl.entity.SysUser">
         select u.id,u.user_name userName,u.user_password userPassword,
-        u.user_email userEmail,u.user_info userInfo,u.head_img headImg,u.create_time createTime,
+        u.user_email userEmail,u.user_info userInfo,u.head_img headImg
+        ,u.create_time createTime,
         r.id "sysRole.id",r.role_name "sysRole.roleName",r.enabled "sysRole.enabled",
         r.create_by "sysRole.createBy",r.create_time "sysRole.createTime"
         from sys_user u
