@@ -11,6 +11,11 @@ import java.util.List;
  * @ Date       ：Created in 11:31 2019/7/24
  */
 public interface RoleMapper {
+
+	SysRole selectById(Long id);
+
+	int updateById(SysRole sysRole);
+
 	List<SysRole> selectRolesByUserid(Long userId);
 
 	/**

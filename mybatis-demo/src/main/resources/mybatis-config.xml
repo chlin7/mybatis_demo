@@ -39,6 +39,13 @@
         <!-- <typeAlias type="com.mybatis.entity.User" alias="user"/>  -->
     </typeAliases>
 
+
+    <!-- 枚举处理器配置 -->
+    <typeHandlers>
+        <typeHandler javaType="com.chl.enums.Enabled"
+                handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+    </typeHandlers>
+
     <!--
         environments标签：多个环境，在mybatis中可以配置多个环境，
             通过default属性可以对多个环境快速切换
