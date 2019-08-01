@@ -2,6 +2,7 @@ package com.chl.entity;
 
 import com.chl.enums.Enabled;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @ Author     ：chenhl01.
  * @ Date       ：Created in 10:31 2019/7/24
  */
-public class SysRole {
+public class SysRole implements Serializable {
 
 	private Long id;
 	private String roleName;

@@ -1,6 +1,7 @@
 package com.chl.mapper;
 
 import com.chl.entity.SysRole;
+import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @ Author     ：chenhl01.
  * @ Date       ：Created in 11:31 2019/7/24
  */
+@CacheNamespaceRef(RoleMapper.class)
 public interface RoleMapper {
 
 	SysRole selectById(Long id);

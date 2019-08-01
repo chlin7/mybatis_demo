@@ -18,8 +18,6 @@
         <setting name="logImpl" value="LOG4J" />
         <!-- 开启缓存 -->
         <setting name="cacheEnabled" value="true"/>
-        <!-- 使用懒加载 -->
-        <setting name="cacheEnabled" value="true"/>
         <!-- 自动将数据中字段以驼峰命名法映射，
             例如user_name映射为userName -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
