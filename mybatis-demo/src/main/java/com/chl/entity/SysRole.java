@@ -1,7 +1,5 @@
 package com.chl.entity;
 
-import com.chl.enums.Enabled;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +13,7 @@ public class SysRole implements Serializable {
 
 	private Long id;
 	private String roleName;
-	private Enabled enabled;
+	private int enabled;
 	private Long createBy;
 	private Date createTime;
 
@@ -37,11 +35,11 @@ public class SysRole implements Serializable {
 		this.roleName = roleName;
 	}
 
-	public Enabled getEnabled() {
+	public int getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(Enabled enabled) {
+	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
 
